@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
 """
-Created on Sat Aug  2 16:52:46 2014
-
-@author: flam
+Classification example for JDOT
 """
 
+# Author: Remi Flamary <remi.flamary@unice.fr>
+#         Nicolas Courty <ncourty@irisa.fr>
+#
+# License: MIT License
 
 import numpy as np
 import pylab as pl

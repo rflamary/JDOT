@@ -5,6 +5,12 @@ Created on Thu Sep 21 16:54:30 2017
 @author: rflamary
 """
 
+# Author: Remi Flamary <remi.flamary@unice.fr>
+#         Nicolas Courty <ncourty@irisa.fr>
+#
+# License: MIT License
+
+
 import numpy as np
 import sklearn
 import scipy.optimize as spo
@@ -210,17 +216,3 @@ class KRRClassifier(Classifier):
 
     def predict(self,K):
         return np.dot(K,self.w)+self.b
-
-#import keras
-#
-#class NNClassifier():
-#    def __init__(self,dim_input,dim_hidden_layer,dim_output):
-#        self.model = keras.models.Sequential()
-#        self.model.add(keras.layers.Dense(dim_hidden_layer, input_dim=dim_input, init='uniform', activation='sigmoid'))
-#        self.model.add(keras.layers.Dense(dim_output, init='uniform',activation='softmax'))
-#        # Compile model
-#        self.model.compile(loss='mse', optimizer='adam', metrics=['accuracy'])
-#    def fit(self,X,y,nb_epoch=5,batch_size=10):
-#        self.model.fit(X, y, nb_epoch=nb_epoch, batch_size=batch_size, verbose=0)
-#    def predict(self,Xtest):
-#        return  self.model.predict(Xtest)
