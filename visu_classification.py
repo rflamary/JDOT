@@ -122,13 +122,13 @@ reg=1e1
 itermax=15
 gamma=0.1#svm.estimGamma(Xtest)
 
-dic= jdot.jdot_svm(X,Y,Xtest,ytest,gamma_g=gamma,numIterBCD = itermax, alpha=.1, lambd=reg,ktype='rbf')#,method='sinkhorn',reg=0.01)
+clf_jdot,dic= jdot.jdot_svm(X,Y,Xtest,ytest,gamma_g=gamma,numIterBCD = itermax, alpha=.1, lambd=reg,ktype='rbf')#,method='sinkhorn',reg=0.01)
 
     
 # visu
-Zj = predict_test_grid(dic['clf'],gamma,Xtest)
+Zj = predict_test_grid(clf_jdot,gamma,Xtest)
 
-ypred=predict_test(dic['clf'],gamma,Xtest,Xtest)
+ypred=predict_test(clf_jdot,gamma,Xtest,Xtest)
 TBR=np.mean(ytest==(ypred.argmax(1)+1))
 
 
@@ -169,8 +169,8 @@ gamma=0.1#svm.estimGamma(Xtest)
 alpha=0.1
 
 for i in range(15):
-    res = jdot.jdot_svm(X,Y,Xtest,ytest,gamma_g=gamma,numIterBCD = i+1, alpha=alpha, lambd=reg,ktype='rbf')#,method='sinkhorn',reg=0.01)
-    Z = predict_test_grid(res['clf'],gamma,Xtest)
+    clf_jdot,res = jdot.jdot_svm(X,Y,Xtest,ytest,gamma_g=gamma,numIterBCD = i+1, alpha=alpha, lambd=reg,ktype='rbf')#,method='sinkhorn',reg=0.01)
+    Z = predict_test_grid(clf_jdot,gamma,Xtest)
     i1=0
     i2=1;
     pl.figure(1,figsize=(5,5))

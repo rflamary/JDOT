@@ -65,7 +65,7 @@ def jdot_krr(X,y,Xtest,gamma_g=1, numIterBCD = 10, alpha=1,lambd=1e1,
 
         C=alpha*C0+fcost
             
-    return g, np.sum(G*(fcost))    
+    return g,np.sum(G*(fcost))    
     
 
 def jdot_svm(X,y,Xtest,  
@@ -142,7 +142,7 @@ def jdot_svm(X,y,Xtest,
     results['G']=G
     results['fcost']=sav_fcost
     results['totalcost']=sav_totalcost
-    return results
+    return g,results
 #
 #def computeTLOT_NN(X,Y,Xtest, ytest=[], numIterBCD = 10, alpha=1, num_hidden=50,method='emd',reg=1,nb_epoch=100,batch_size=10):
 #    # Initializations

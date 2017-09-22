@@ -83,12 +83,12 @@ fcost = cdist(ys,yt,metric='sqeuclidean')
 C=alpha*C0+fcost
 G0=ot.emd(ot.unif(n),ot.unif(n),C)
 
-res,loss = jdot.jdot_krr(xs,ys,xt,gamma_g=gamma,numIterBCD = 10, alpha=alpha, lambd=lambd0,ktype='rbf')
+model,loss = jdot.jdot_krr(xs,ys,xt,gamma_g=gamma,numIterBCD = 10, alpha=alpha, lambd=lambd0,ktype='rbf')
 
 K=sklearn.metrics.pairwise.rbf_kernel(xt,xt,gamma=gamma)
 Kvisu=sklearn.metrics.pairwise.rbf_kernel(xvisu.reshape((-1,1)),xt,gamma=gamma)
-ypred=res.predict(Kvisu)
-ypred0=res.predict(K)
+ypred=model.predict(Kvisu)
+ypred0=model.predict(K)
 
 
 # compute true OT
