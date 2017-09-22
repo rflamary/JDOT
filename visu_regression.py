@@ -185,6 +185,108 @@ pl.title('Model estimated with JDOT',fontsize=fs)
 pl.tight_layout()
 #pl.savefig('imgs/visu_reg.eps')
 
+#%% visu joint distributions
+from matplotlib import gridspec
+seed=1985
+np.random.seed(seed)
+
+n = 2000000
+ntest=2000000
+nz=.3
+
+theta=0.8
+
+
+n2=int(n/2)
+sigma=0.05
+
+xs=np.random.randn(n,1)+2
+xs[:n2,:]-=4
+ys=sigma*np.random.randn(n,1)+np.sin(xs/2)
+
+fs_s = lambda x: np.sin(x/2)
+
+xt=np.random.randn(n,1)+2
+xt[:n2,:]/=2 
+xt[:n2,:]-=3
+  
+gauss = lambda x,s,m: np.exp((x-m)**2/(2*s*s))/(s*np.sqrt(2*np.pi))
+
+mus_x = lambda x: gauss(x,1,2)/2+gauss(x,1,-2)/2
+
+
+yt=sigma*np.random.randn(n,1)+np.sin(xt/2)
+xt+=2
+
+fs_t = lambda x: np.sin((x-2)/2)
+
+mut_x = lambda x: gauss(x,1,2)/2+gauss(x,1./2,-4)/2
+                       
+xvisu=np.linspace(-4,6.5,100)
+
+#%% data visu
+pl.figure(5,(10,10))
+pl.clf()
+from matplotlib import gridspec
+gs = gridspec.GridSpec(3, 3)
+ax1 = pl.subplot(gs[0, 1:])
+
+#pl.hist(xs.ravel(),bins=200,histtype='step')
+#pl.hist(xt.ravel(),bins=200,histtype='step')
+
+nbin=100
+nbvisu=500
+
+iss=np.random.permutation(n)[:nbvisu]
+ist=np.random.permutation(ntest)[:nbvisu]
+
+hys,pos=np.histogram(xs,nbin)
+hyt,pot=np.histogram(xt,nbin)
+pl.plot(pos[1:],hys)
+pl.plot(pot[1:],hyt)
+
+pl.yticks(())
+pl.ylim([0,pl.ylim()[1]])
+
+
+
+xl=pl.xlim()
+pl.title('x marginals')
+
+ax2 = pl.subplot(gs[1:, 0])
+
+#pl.hist(ys.ravel(),bins=200,histtype='step')
+#pl.hist(yt.ravel(),bins=200,histtype='step')
+pl.gca().invert_xaxis()
+#pl.gca().invert_yaxis()
+
+hys,pos=np.histogram(ys,nbin)
+hyt,pot=np.histogram(yt,nbin)
+pl.plot(hys,pos[1:])
+pl.plot(hyt,pot[1:])
+
+pl.xticks(())
+yl=pl.ylim()
+pl.xlim([pl.xlim()[0],0])
+rg=[xl, np.sort(yl)]
+pl.ylabel('y marginals')
+
+
+pl.subplot(gs[1:, 1:], sharex=ax1, sharey=ax2)
+
+pl.scatter(xs[iss],ys[iss],edgecolors='k')
+pl.scatter(xt[ist],yt[ist],edgecolors='k')
+pl.plot(xvisu,fs_s(xvisu),label='Source model')
+pl.plot(xvisu,fs_t(xvisu),label='Target model')
+#pl.hist2d(xs.ravel(),ys.ravel(),cmap='Blues',bins=200,alpha=0.99,range=rg)
+#pl.hist2d(xt.ravel(),yt.ravel(),cmap='Oranges',bins=200,alpha=0.7,range=rg)
+
+pl.xticks(())
+pl.yticks(())
+pl.savefig('imgs/visu_data_reg.png')
+#
+#gs = gridspe
+
 
 #%%
 #seed=1985
