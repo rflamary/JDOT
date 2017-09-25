@@ -13,9 +13,7 @@ import pylab as pl
 import ot
 import jdot
 #from sklearn import datasets
-import sklearn
 import classif
-from matplotlib.colors import ListedColormap
 
 
 
@@ -40,7 +38,7 @@ Xtest,ytest=ot.datasets.get_data_classif(dataset,ntest,nz)
 
 
 
-print 'Angle='+str(theta*180./np.pi)
+print('Angle='+str(theta*180./np.pi))
 rotation = np.array([[np.cos(theta),np.sin(theta)],
                           [-np.sin(theta),np.cos(theta)]])
 #y[1:100]=2
@@ -170,18 +168,28 @@ reg=1e1
 gamma=0.1#svm.estimGamma(Xtest)
 alpha=0.1
 
-for i in range(15):
+pl.figure(3,(10,4))
+
+for i in range(10):
     clf_jdot,res = jdot.jdot_svm(X,Y,Xtest,ytest,gamma_g=gamma,numIterBCD = i+1, alpha=alpha, lambd=reg,ktype='rbf')#,method='sinkhorn',reg=0.01)
     Z = predict_test_grid(clf_jdot,gamma,Xtest)
     i1=0
     i2=1;
-    pl.figure(1,figsize=(5,5))
-    pl.clf()
+    #pl.figure(1,figsize=(5,5))
+    #pl.clf()
+    
+    pl.subplot(2,5,i+1)
 
     
     plot_data_classif(Xtest,ytest,Z)
     pl.axis((x_min,x_max,y_min,y_max))
-    pl.title('JDOT on target data iter {}'.format(i))
+    pl.title('JDOT on Iter {}'.format(i))
+    
+    if i<5:
+        pl.xticks(())
 
-    pl.savefig('imgs/tlot_classif_{}.png'.format(i))
+    #pl.savefig('imgs/tlot_classif_{}.png'.format(i))
+    pl.savefig('imgs/visu_classif.png')
     pl.show()
+    
+pl.savefig('imgs/visu_classif.png')
