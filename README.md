@@ -42,8 +42,15 @@ $ pip install numpy scipy matplotlib # keras
 
 We provide 3 example script that reproduce the Figures in the paper.
 
-* **visu_regression.py** Plot Figure 1 in the paper (regression toy example).
+* **visu_regression.py** Plot Figure 1 in the paper (regression toy example, see below).
+
+![imgreg](imgs/visu_reg2.png)
+
 * **visu_classification.py** Plot Figure 1 in the supplementary (classification toy example with BCD iterations).
+
+![imgreg](imgs/visu_classif.png)
+
+
 * **visu_regression_nn.py** shows an exmaple of JDOT when learning a keras neural network.
 
 
