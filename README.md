@@ -37,10 +37,9 @@ $ pip install numpy scipy matplotlib # keras
 * **jdot**: module containing the thre implemented variants of JDOT (Kernel Ridge Regression, Hinge Loss, least  square neural network).
 * **classif**:  simple classifier classes used in JDOT.
 
+## Plot examples 
 
-## Plot results
-
-We provide 3 example script that reproduce the Figures in the paper.
+We provide 3 example scripts that reproduce the Figures in the paper.
 
 * **visu_regression.py** Plot Figure 1 in the paper (regression toy example, see below).
 
