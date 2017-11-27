@@ -22,6 +22,7 @@ In order to run, the code requires the following Python modules:
 
 * Numpy/Scipy
 * Matplotlib
+* [POT](https://github.com/rflamary/POT)
 
 If you want to use the neural network JDOT example you will also need the keras toolbox.
 
@@ -29,7 +30,7 @@ If you want to use the neural network JDOT example you will also need the keras 
 If you have not already installed them you can install the dependencies with PIP using the following command
 
 ```
-$ pip install numpy scipy matplotlib # keras
+$ pip install numpy scipy matplotlib POT # keras
 ```
 
 ## Modules
